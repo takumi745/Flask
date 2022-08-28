@@ -100,7 +100,7 @@ def uploads_file():
             logger.debug('show+')
             cv2.putText(image, "FPS: %f" % (1.0 / (time.time() - fps_time)), (10, 10),  cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
             # 動画ウィンドウを表示しない
-            #cv2.imshow('tf-pose-estimation result', image)
+            # cv2.imshow('tf-pose-estimation result', image)
             if args.write_video:
                 writer.write(image)
             fps_time = time.time()
@@ -134,6 +134,12 @@ def uploads_file():
             <p><input type=file name = file>
             <input type = submit value = Upload>
             </form>
+            <div>
+                <h2>解析結果</h2>
+                <ul>
+                    <li><a href="./result/xxxxx.mp4">xxxxx.mp4</a></li>
+                </ul>
+            </div>
         </body>
 '''
 
