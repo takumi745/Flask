@@ -1,8 +1,9 @@
 import os
+from unittest import result
 # request フォームから送信した情報を扱うためのモジュール
 # redirect  ページの移動
 # url_for アドレス遷移
-from flask import Flask, request, redirect, url_for, flash
+from flask import Flask, request, redirect, url_for, flash, render_template
 # ファイル名をチェックする関数
 from werkzeug.utils import secure_filename
 # 動画のダウンロード
@@ -92,6 +93,12 @@ def uploads_file():
         fps = cap.get(cv2.CAP_PROP_FPS)
         #fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
         fmt = cv2.VideoWriter_fourcc('H', '2', '6', '4')
+        
+        # 解析結果の表示
+        @app.route('./uploads')
+        def index():
+            data = ？
+            return render_template('？', result=data)
 
         # 出力ファイル
         outfile = file.filename.rsplit(".")
@@ -168,8 +175,9 @@ def uploads_file():
             <div>
                 <h2>解析結果</h2>
                 <ul>
-                    <li><a href="./uploads/Swing_from_the_front.mod.mp4">スイング解析結果（　前　）</a></li>
-                    <li><a href="./uploads/Swing_from_behind.mod.mp4">スイング解析結果（　後ろ　）</a></li>
+                    {% for results in result %}
+                        <li><a>{{ results }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </body>
@@ -183,3 +191,6 @@ def uploaded_file(filename):
 if __name__ == '__main__':
     app.debug = True
     app.run()
+    
+    
+    
