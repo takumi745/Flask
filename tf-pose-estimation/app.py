@@ -14,6 +14,7 @@ import logging
 import time
 import cv2
 import numpy as np
+import glob
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
 
@@ -93,12 +94,6 @@ def uploads_file():
         fps = cap.get(cv2.CAP_PROP_FPS)
         #fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
         fmt = cv2.VideoWriter_fourcc('H', '2', '6', '4')
-        
-        # 解析結果の表示
-        @app.route('./uploads')
-        def index():
-            data = ？
-            return render_template('？', result=data)
 
         # 出力ファイル
         outfile = file.filename.rsplit(".")
@@ -172,25 +167,19 @@ def uploads_file():
             <p><input type=file name = file>
             <input type = submit value = Upload>
             </form>
-            <div>
-                <h2>解析結果</h2>
-                <ul>
-                    {% for results in result %}
-                        <li><a>{{ results }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
         </body>
 '''
-
 @app.route('/uploads/<filename>')
 # ファイルを表示する
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/index')
+def index():
+    title = '解析結果'
+    files = glob.glob("./uploads/*.mod") 
+    return render_template('index.html', title=title, files=files)
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
-    
-    
-    
