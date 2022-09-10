@@ -21,7 +21,7 @@ from tf_pose.networks import get_graph_path, model_wh
 
 # ------------------- 初期設定 --------------------------
 # 動画のアップロード先のディレクトリ
-UPLOAD_FOLDER = '/Users/zouzatakumi/Desktop/Flask_app/uploads/'
+UPLOAD_FOLDER = '/Users/zouzatakumi/Desktop/Flask_app/tf-pose-estimation/uploads/'
 # アップロードされる拡張子の制限
 ALLOWED_EXTENSIONS = set(['mp4'])
 
@@ -176,8 +176,8 @@ def uploaded_file(filename):
 
 @app.route('/index')
 def index():
-    title = '解析結果'
-    files = glob.glob("./uploads/*.mod") 
+    title = '解析結果x'
+    files = glob.glob("./uploads/*.mod.mp4") 
     return render_template('index.html', title=title, files=files)
 
 if __name__ == '__main__':

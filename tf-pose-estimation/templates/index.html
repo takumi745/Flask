@@ -1,6 +1,19 @@
-<h2>{{ title }}}</h2>
-<ul>
-    {% for file in files %} <!-- ループさせてそれぞれ要素を取り出す -->
-        <li>{{ file }}</li> <!-- apple google facebook amazonがそれぞれ表示される -->
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h2>{{ title }}</h2>
+    <ul>
+        <!-- ループさせてそれぞれ要素を取り出す -->
+        {% for file in files %}
+            <!-- apple google facebook amazonがそれぞれ表示される --> 
+            <li><a href="{{ file }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>    
+</body>
+</html>
